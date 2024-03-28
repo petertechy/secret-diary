@@ -1,24 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>My Secret App</h1>
-    <input id="title" type="text" placeholder="Title">
-    <textarea placeholder="Message..." id="note" name="" id="" cols="30" rows="10"></textarea>
+    <input id="title" type="text" placeholder="Title" /><br /><br />
+    <textarea
+      placeholder="Message..."
+      id="note"
+      name=""
+      id=""
+      cols="30"
+      rows="10"
+    ></textarea
+    ><br /><br />
     <button onclick="addNote()">Submit</button>
 
+    <table border="1" width="300">
+      <tr>
+        <th>S/N</th>
+        <th>Note Title</th>
+        <th>Date created</th>
+      </tr>
+      <tr id="display"></tr>
+    </table>
 
     <script>
-        function addNote(){
-            let title = document.getElementById("title").value;
-            let note = document.getElementById("note").value;
+      let noteArray = [];
+      function addNote() {
+        let noteTitle = document.getElementById("title").value;
+        let noteBody = document.getElementById("note").value;
+        let noteObject = {
+          title: noteTitle,
+          note: noteBody,
+          createdDate: Date.now(),
+        };
+        console.log(noteObject);
 
-            console.log(title, note)
+        noteArray.push(noteObject);
+        displayNote();
+        console.log(noteArray);
+        // let xxx = "a string";
+      }
+
+      function displayNote() {
+        let d = "";
+        for (let i = 0; i < noteArray.length; i++) {
+          d += `<tr>
+                    <td>${i + 1}</td>
+                    <td>
+                        <p>${noteArray[i].title}</p>
+                    </td>
+                    <td>${new Date(
+                      noteArray[i].createdDate
+                    ).toLocaleDateString()}
+                    </td>
+                </tr>`;
         }
+        document.getElementById("display").innerHTML = d;
+      }
     </script>
-</body>
+  </body>
 </html>
