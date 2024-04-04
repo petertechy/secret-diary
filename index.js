@@ -28,14 +28,15 @@ function displayNote() {
               ).toLocaleDateString()}
               </td>
               <td>
-                  <button onclick="deleteNote(${i})">Delete</button>
+                  <button class = "btn btn-danger" onclick="deleteNote(${i})">Delete</button>
               </td>
           </tr>`;
   }
   document.getElementById("display").innerHTML = d;
 }
 
-function deleteNote(i) {
+function deleteNote() {
   noteArray.splice(i, 1);
   console.log(noteArray);
+  displayNote()
 }
